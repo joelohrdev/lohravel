@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use RalphJSmit\Filament\SEO\SEO;
 
 class PostResource extends Resource
 {
@@ -29,6 +30,7 @@ class PostResource extends Resource
                             ->schema([
                                 Forms\Components\TextInput::make('title')->required()->autofocus()->columnSpanFull(),
                                 Forms\Components\MarkdownEditor::make('body')->required()->columnSpanFull(),
+                                SEO::make(),
                             ])->columnSpan(2),
                         Forms\Components\Fieldset::make()
                             ->schema([
@@ -39,7 +41,7 @@ class PostResource extends Resource
                                         'published' => 'Published',
                                     ])
                                     ->columnSpanFull()
-                                    ->default('draft')
+                                    ->default('draft'),
                             ])->columnSpan(1),
                     ])
             ]);
