@@ -42,6 +42,10 @@ class PostResource extends Resource
                                     ])
                                     ->columnSpanFull()
                                     ->default('draft'),
+                                Forms\Components\Select::make('categories')
+                                    ->columnSpanFull()
+                                    ->multiple()
+                                    ->relationship('categories', 'name'),
                             ])->columnSpan(1),
                     ])
             ]);
