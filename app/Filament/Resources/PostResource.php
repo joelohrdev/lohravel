@@ -7,12 +7,14 @@ use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use RalphJSmit\Filament\SEO\SEO;
+use Str;
 
 class PostResource extends Resource
 {
@@ -28,7 +30,12 @@ class PostResource extends Resource
                     ->schema([
                         Forms\Components\Fieldset::make()
                             ->schema([
-                                Forms\Components\TextInput::make('title')->required()->autofocus()->columnSpanFull(),
+                                Forms\Components\TextInput::make('title')
+                                    ->live()
+                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
+                                    ->required()
+                                    ->autofocus(),
+                                Forms\Components\TextInput::make('slug')->required(),
                                 Forms\Components\MarkdownEditor::make('body')->required()->columnSpanFull(),
                                 SEO::make(),
                             ])->columnSpan(2),

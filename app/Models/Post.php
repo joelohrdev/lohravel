@@ -11,9 +11,14 @@ class Post extends Model
     use HasSEO;
     protected $fillable = [
         'title',
+        'slug',
         'body',
         'published_at',
         'status',
+    ];
+
+    protected $casts = [
+        'published_at' => 'date',
     ];
 
     public function categories(): BelongsToMany
