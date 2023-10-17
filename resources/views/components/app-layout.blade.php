@@ -13,7 +13,8 @@
     <header>
         <div class="w-full max-w-5xl mx-auto flex justify-between my-5 px-5 lg:px-0">
             <a wire:navigate href="/" class="hover:opacity-75 transition">
-                <img class="w-full h-10" src="{{ asset('images/logo.svg') }}" alt="Lohravel">
+{{--                <img class="w-full h-10" src="{{ asset('images/logo.svg') }}" alt="Lohravel">--}}
+                <span class="font-black text-3xl leading-3">Lohravel</span>
             </a>
             <div></div>
         </div>
